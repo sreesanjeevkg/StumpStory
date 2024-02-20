@@ -2,30 +2,47 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
+  downstream_blocks:
+  - loadrawdatatogcs
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: downloadcricsheet
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: downloadcricsheet
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: python
-  name: downloadDatafromcricsheet
+  name: loadrawdatatoGCS
   retry_config: null
-  status: not_executed
+  status: updated
   timeout: null
-  type: data_loader
-  upstream_blocks: []
-  uuid: downloaddatafromcricsheet
+  type: data_exporter
+  upstream_blocks:
+  - downloadcricsheet
+  uuid: loadrawdatatogcs
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
 conditionals: []
-created_at: '2024-02-19 20:10:31.410994+00:00'
+created_at: '2024-02-20 03:22:20.916134+00:00'
 data_integration: null
 description: null
 executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: rawDataIngestor
+name: RawDataIngester
 notification_config: {}
 remote_variables_dir: null
 retry_config: {}
@@ -35,6 +52,6 @@ settings:
 spark_config: {}
 tags: []
 type: python
-uuid: rawdataingestor
-variables_dir: /home/src/mage_data/stumpsNDbails
+uuid: rawdataingester
+variables_dir: /home/src/mage_data/stumpsndbails
 widgets: []

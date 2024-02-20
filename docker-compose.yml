@@ -13,5 +13,7 @@ services:
     ports:
       - 6789:6789
     volumes:
-      - .:/home/src/
+      - /home/stumpsndbails/stumpsNDbails/mage/:/home/src/
+      - /home/stumpsndbails/stumpsNDbails/mage/secrets/:/home/src/secrets
+      - /home/stumpsndbails/stumpsNDbails/secrets/stumpsndbails-b4fe9300c0a1.json:/home/src/secrets/service-account.json
     restart: on-failure:5

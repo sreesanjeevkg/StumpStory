@@ -14,6 +14,11 @@ provider "google" {
   credentials = "/Users/sreesanjeev/Desktop/stumpsNDbails/secrets/stumpsndbails-b4fe9300c0a1.json"
 }
 
+resource "google_compute_address" "staticIPAddress" {
+  name   = "static-ip-address"
+  region = "us-central1"
+}
+
 resource "google_compute_instance" "orchestratorVM" {
   name                      = "orchestrator"
   zone                      = "us-central1-a"
@@ -29,7 +34,9 @@ resource "google_compute_instance" "orchestratorVM" {
 
   network_interface {
     network = "default"
-    access_config {}
+    access_config {
+      nat_ip = google_compute_address.staticIPAddress.address
+    }
   }
 }
 

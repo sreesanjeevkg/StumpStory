@@ -47,9 +47,16 @@ notification_config:
   alert_on:
   - trigger_failure
   - trigger_passed_sla
+  - trigger_success
   slack_config:
     webhook_url: "{{ env_var('MAGE_SLACK_WEBHOOK_URL') }}"
   teams_config:
     webhook_url: "{{ env_var('MAGE_TEAMS_WEBHOOK_URL') }}"
+  email_config:
+    to_emails:
+      - sreesanjeevkg@gmail.com
+
 project_uuid: 8a5f9d6d10b246769d2ca9aaf0f5cc0c
 help_improve_mage: true
+features:
+  display_local_timezone: true

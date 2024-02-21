@@ -223,3 +223,4 @@ package.json
 yarn.lock
 mage/rawData
 mage/secrets
+mage/mage_data/stumpsndbails/pipelines/example_pipeline/.variables/

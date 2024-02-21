@@ -53,8 +53,16 @@ notification_config:
   teams_config:
     webhook_url: "{{ env_var('MAGE_TEAMS_WEBHOOK_URL') }}"
   email_config:
+    smtp_host: 'in-v3.mailjet.com'
+    smtp_mail_from: 'magecricsheettrigger@usa.com'
+    smtp_user: "e8ba6b978a9263a3301e7ec4f59e3a78"
+    smtp_password: "c76430539da3016680d8faa8c3db5ec7"
     to_emails:
       - sreesanjeevkg@gmail.com
+  message_templates:
+    success:
+      title: Success {pipeline_uuid}
+      details: Successfully completed the pipeline {pipeline_uuid} started at {execution_time}
 
 project_uuid: 8a5f9d6d10b246769d2ca9aaf0f5cc0c
 help_improve_mage: true

@@ -74,24 +74,20 @@ def transform_custom(*args, **kwargs):
         venue = extract_values(df, 'venue')
         event = extract_values(df, 'event')
 
-        match_info_columns = ['match_id','gender', 'date', 'winner', 'method', 'outcome', 'player_of_match', 'umpire', 'city', 'venue','event']
-
         match_info_df = pd.DataFrame(columns=match_info_columns)
 
+        match_info_df['match_id'] = match_id
         match_info_df['gender'] = gender
         match_info_df['date'] = [date]
         match_info_df['winner'] = winner
         match_info_df['method'] = method
         match_info_df['outcome'] = outcome
-        match_info_df['gender'] = gender
         match_info_df['player_of_match'] = [player_of_match]
         match_info_df['umpire'] = [umpire]
         match_info_df['city'] = city
+        match_info_df['venue'] = venue
         match_info_df['event'] = event
-        match_info_df['match_id'] = match_id
 
-        match_info_df.to_csv(f"match_info_by_matches/player_info_{match_id}.csv")
-
-
+        match_info_df.to_csv(f"match_info_by_matches/match_info_{match_id}.csv")
 
     return None

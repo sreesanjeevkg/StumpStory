@@ -59,6 +59,8 @@ notification_config:
     smtp_password: "c76430539da3016680d8faa8c3db5ec7"
     to_emails:
       - sreesanjeevkg@gmail.com
+      - hbksanjeev@gmail.com
+      - kandasamygok@wisc.edu
   message_templates:
     success:
       title: Success {pipeline_uuid}

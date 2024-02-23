@@ -8,6 +8,7 @@ import pandas as pd
 import csv
 from google.cloud import storage
 import os
+import shutil
 
 if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
@@ -37,3 +38,7 @@ def export_data(data, *args, **kwargs):
         blob.upload_from_filename(csv_file)
     
     print("Raw Data Ingested successfully")
+
+    shutil.rmtree(destination)
+
+    print("successfully deleted")

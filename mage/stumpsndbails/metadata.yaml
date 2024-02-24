@@ -19,6 +19,16 @@ emr_config:
   # You can create a key pair in page https://console.aws.amazon.com/ec2#KeyPairs and download the key file.
   # ec2_key_name: '[ec2_key_pair_name]'
 
+# retry_config:
+#   # Number of retry times
+#   retries: 3
+#   # Initial delay (in seconds) before retry. If exponential_backoff is true,
+#   # the delay time is multiplied by 2 for the next retry
+#   delay: 10
+#   # Whether to use exponential backoff retry
+#   exponential_backoff: true
+
+
 spark_config:
   # Application name
   app_name: 'my spark app'

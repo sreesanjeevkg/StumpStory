@@ -2,6 +2,7 @@ import os
 import glob
 import pandas as pd
 import re
+import numpy as np
 if 'custom' not in globals():
     from mage_ai.data_preparation.decorators import custom
 if 'test' not in globals():
@@ -59,7 +60,7 @@ def transform_custom(*args, **kwargs):
 
         player_info = pd.merge(players, people, how="inner", on=["player_name", "match_id"])
 
-        player_info.to_csv(f"player_info_by_matches/player_info_{match_id}.csv")
+        player_info.to_csv(f"player_info_by_matches/player_info_{match_id}.csv", index=False)
 
         match_info_columns = ['match_id', 'gender', 'date', 'winner', 'method', 'outcome', 'player_of_match', 'umpire', 'city', 'venue','event']
 
@@ -76,8 +77,8 @@ def transform_custom(*args, **kwargs):
 
         match_info_df = pd.DataFrame(columns=match_info_columns)
 
-        match_info_df['match_id'] = match_id
         match_info_df['gender'] = gender
+        match_info_df['match_id']=match_id # TODO: Why debug further
         match_info_df['date'] = [date]
         match_info_df['winner'] = winner
         match_info_df['method'] = method
@@ -88,6 +89,6 @@ def transform_custom(*args, **kwargs):
         match_info_df['venue'] = venue
         match_info_df['event'] = event
 
-        match_info_df.to_csv(f"match_info_by_matches/match_info_{match_id}.csv")
+        match_info_df.to_csv(f"match_info_by_matches/match_info_{match_id}.csv", columns=match_info_columns, index=False)
 
     return None

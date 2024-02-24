@@ -10,15 +10,16 @@ blocks:
   language: python
   name: downloadcricsheet
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: downloadcricsheet
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration: {}
-  downstream_blocks: []
+  downstream_blocks:
+  - cleaning
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -31,6 +32,43 @@ blocks:
   upstream_blocks:
   - downloadcricsheet
   uuid: loadrawdatatogcs
+- all_upstream_blocks_executed: false
+  color: teal
+  configuration:
+    file_source:
+      path: custom/cleaning.py
+  downstream_blocks:
+  - cleaneddatatogcs
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: cleaning
+  retry_config: null
+  status: updated
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - loadrawdatatogcs
+  uuid: cleaning
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    file_source:
+      path: data_exporters/cleaneddatatogcs.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: cleaneddatatogcs
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - cleaning
+  uuid: cleaneddatatogcs
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
@@ -39,13 +77,13 @@ blocks:
   executor_type: local_python
   has_callback: false
   language: python
-  name: cheerful wave
+  name: veiled dew
   retry_config: null
   status: updated
   timeout: null
   type: scratchpad
   upstream_blocks: []
-  uuid: cheerful_wave
+  uuid: veiled_dew
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}
@@ -57,16 +95,19 @@ executor_config: {}
 executor_count: 1
 executor_type: null
 extensions: {}
-name: RawDataIngester
+name: RawDataIngesterAndCleaner
 notification_config: {}
 remote_variables_dir: null
-retry_config: {}
+retry_config:
+  delay: 5
+  exponential_backoff: true
+  retries: 3
 run_pipeline_in_one_process: false
 settings:
   triggers: null
 spark_config: {}
 tags: []
 type: python
-uuid: rawdataingester
+uuid: rawdataingesterandcleaner
 variables_dir: /home/src/mage_data/stumpsndbails
 widgets: []

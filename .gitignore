@@ -226,3 +226,4 @@ mage/secrets
 mage/mage_data/stumpsndbails/pipelines/example_pipeline/.variables/
 mage/match_info_by_matches/
 mage/player_info_by_matches/
+mage/mage_data/stumpsndbails/pipelines/rawdataingester/.variables/

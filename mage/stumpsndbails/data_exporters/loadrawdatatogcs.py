@@ -21,13 +21,15 @@ def export_data(data, *args, **kwargs):
 
     bucket_name = 'stumpsndbails_storage_bucket'
     project_id = 'stumpsndbails'
-    object_key_prefix = 'raw/'
+    object_key_prefix = 'raw/test/'
     counter = 0
 
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/src/secrets/service-account.json"
 
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
+
+    csv_files = ['/home/src/rawData/64012.csv']
 
     for csv_file in csv_files:
         counter += 1
@@ -38,7 +40,3 @@ def export_data(data, *args, **kwargs):
         blob.upload_from_filename(csv_file)
     
     print("Raw Data Ingested successfully")
-
-    shutil.rmtree(destination)
-
-    print("successfully deleted")

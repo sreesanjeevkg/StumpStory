@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: core
+    database: stumpsndbails
+    schema: Crictest
+    tables:
+      - name: ball_by_ball
+      - name: match_info
+      - name: player_info
+models:
+  - name: fact_balls
+    description: "Table for fact ball by ball data"

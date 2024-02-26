@@ -37,4 +37,6 @@ The Docker image of MageAI is running on the GCP VM with a cron job scheduled to
 
 ## dbt
 
-Learning about Dimensional modeling before designing the fact and dimension tables.
+Constructed a basic dimensional modelling structure from the available data, has dimension tables for players and match info. and the grain will be each ball bowled in a cricket match
+
+![image](images/dbtLineage.png)

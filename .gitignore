@@ -227,3 +227,6 @@ mage/mage_data/stumpsndbails/pipelines/example_pipeline/.variables/
 mage/match_info_by_matches/
 mage/player_info_by_matches/
 mage/mage_data/stumpsndbails/pipelines/rawdataingester/.variables/
+mage/mage_data/stumpsndbails/pipeliines/
+mage/mage_data/stumpsndbails/.operation_history
+mage/mage_data/

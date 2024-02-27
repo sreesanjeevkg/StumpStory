@@ -2,7 +2,7 @@
 
 select registry as player_id,
        player_name,
-       array_agg(distinct Team) as Teams_played,
-       array_agg(distinct match_id) as Matches_played
+       Team,
+       match_id
        from {{source("core",'player_info')}}
-       group by 1,2
+       group by 1,2,3,4

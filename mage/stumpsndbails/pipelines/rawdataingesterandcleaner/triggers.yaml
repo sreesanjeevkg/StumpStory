@@ -1,1 +1,23 @@
-triggers: []
+triggers:
+- envs: []
+  last_enabled_at: null
+  name: nebulous ronin
+  pipeline_uuid: rawdataingesterandcleaner
+  schedule_interval: null
+  schedule_type: null
+  settings: null
+  sla: null
+  start_time: null
+  status: inactive
+  variables: null
+- envs: []
+  last_enabled_at: 2024-02-27 04:49:33.646512
+  name: Every day load
+  pipeline_uuid: rawdataingesterandcleaner
+  schedule_interval: 0 6 * * *
+  schedule_type: time
+  settings: null
+  sla: null
+  start_time: 2024-02-27 04:48:00
+  status: active
+  variables: {}

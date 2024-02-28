@@ -29,22 +29,23 @@ WITH deliveries AS (
 ),
 players AS (
     SELECT 
-        player_name, 
-        player_id
+        player_id,
+        player_name
     FROM 
         {{ ref("dim_players") }}
+    group by 1, 2
 ),
 matches AS (
     SELECT 
-        match_id 
+        distinct match_id 
     FROM 
         {{ ref("dim_matches") }}
 ) 
 SELECT 
     matches.match_id,
     innings,
-    cast overs as integer,
-    cast ball as integer,
+    CAST (overs as integer) as overs,
+    CAST (ball as integer) as ball ,
     b1.player_id AS striker,
     b2.player_id AS non_striker,
     b3.player_id AS bowler,

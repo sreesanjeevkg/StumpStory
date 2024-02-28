@@ -19,9 +19,9 @@ def export_data(data, *args, **kwargs):
     destination = "/home/src/rawData"
     csv_files = glob.glob(f"{destination}/*.csv")
 
-    bucket_name = 'stumpsndbails_storage_bucket'
+    bucket_name = 'stumpsndbails'
     project_id = 'stumpsndbails'
-    object_key_prefix = 'raw/test/'
+    object_key_prefix = 'raw/'
     counter = 0
 
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/src/secrets/service-account.json"

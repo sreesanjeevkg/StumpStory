@@ -63,8 +63,9 @@ def transform_custom(*args, **kwargs):
 
         player_info.to_csv(f"player_info_by_matches/player_info_{match_id}.csv", index=False)
 
-        match_info_columns = ['match_id', 'gender', 'date', 'winner', 'method', 'outcome', 'player_of_match', 'umpire', 'city', 'venue','event']
+        match_info_columns = ['match_id','Teams', 'gender', 'date', 'winner', 'method', 'outcome', 'player_of_match', 'umpire', 'city', 'venue','event']
 
+        teams  = extract_values(df, 'team')
         gender = extract_values(df, 'gender')
         date = extract_values(df, 'date')
         winner = extract_values(df, 'winner')
@@ -79,6 +80,7 @@ def transform_custom(*args, **kwargs):
         match_info_df = pd.DataFrame(columns=match_info_columns)
 
         match_info_df['gender'] = gender
+        match_info_df['Teams'] = [teams]
         match_info_df['match_id']=match_id # TODO: Why debug further
         match_info_df['date'] = [date]
         match_info_df['winner'] = winner

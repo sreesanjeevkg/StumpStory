@@ -40,4 +40,3 @@ def test_output(*args) -> None:
     result = bool(info_files) and bool(data_files)
     
     assert result is True, 'No files matching the pattern was found'
-

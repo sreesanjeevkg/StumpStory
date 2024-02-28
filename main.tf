@@ -22,7 +22,7 @@ resource "google_compute_address" "staticIPAddress" {
 resource "google_compute_instance" "orchestratorVM" {
   name                      = "orchestrator"
   zone                      = "us-central1-a"
-  machine_type              = "e2-highmem-2"
+  machine_type              = "e2-standard-2"
   allow_stopping_for_update = true
 
   boot_disk {
@@ -40,10 +40,10 @@ resource "google_compute_instance" "orchestratorVM" {
   }
 }
 
-resource "google_storage_bucket" "dataBucket" {
-  name     = "stumpsndbails_storage_bucket"
+resource "google_storage_bucket" "storageBucket" {
+  name     = "stumpsndbails"
   location = "US"
   versioning {
-    enabled = true
+    enabled = false
   }
 }

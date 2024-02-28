@@ -4,6 +4,7 @@ blocks:
   configuration: {}
   downstream_blocks:
   - loadrawdatatogcs
+  - cleaning
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -18,8 +19,7 @@ blocks:
 - all_upstream_blocks_executed: true
   color: null
   configuration: {}
-  downstream_blocks:
-  - cleaning
+  downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -32,7 +32,7 @@ blocks:
   upstream_blocks:
   - downloadcricsheet
   uuid: loadrawdatatogcs
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: teal
   configuration:
     file_source:
@@ -49,7 +49,7 @@ blocks:
   timeout: null
   type: custom
   upstream_blocks:
-  - loadrawdatatogcs
+  - downloadcricsheet
   uuid: cleaning
 - all_upstream_blocks_executed: false
   color: null
@@ -69,21 +69,6 @@ blocks:
   upstream_blocks:
   - cleaning
   uuid: cleaneddatatogcs
-- all_upstream_blocks_executed: true
-  color: null
-  configuration: {}
-  downstream_blocks: []
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: veiled dew
-  retry_config: null
-  status: updated
-  timeout: null
-  type: scratchpad
-  upstream_blocks: []
-  uuid: veiled_dew
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

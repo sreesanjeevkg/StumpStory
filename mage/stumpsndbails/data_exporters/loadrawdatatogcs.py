@@ -29,8 +29,6 @@ def export_data(data, *args, **kwargs):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
 
-    csv_files = ['/home/src/rawData/64012.csv']
-
     for csv_file in csv_files:
         counter += 1
         if (counter % 1000 == 0):

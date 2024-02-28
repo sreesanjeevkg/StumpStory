@@ -26,8 +26,8 @@ def export_data(data, *args, **kwargs):
     bucket_name = 'stumpsndbails_storage_bucket'
     project_id = 'stumpsndbails'
     csv_object_key_prefix = 'staging/ballByball/'
-    player_info_prefix = 'staging/player_info/'
-    match_info_prefix = 'staging/match_info/'
+    player_info_prefix = 'staging/test/player_info/'
+    match_info_prefix = 'staging/test/match_info/'
     counter = 0
 
     os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "/home/src/secrets/service-account.json"

@@ -11,7 +11,9 @@ if 'test' not in globals():
 def extract_values(df, value):
     values = df[df.iloc[:, 0] == value].iloc[:, 1].values
     if len(values) == 0:
-        values = "N/A"
+        values = None
+    elif len(values) > 1:
+        values = [", ".join(val.split("' '")) for val in values]
     return values
 
 
@@ -37,7 +39,6 @@ def transform_custom(*args, **kwargs):
         os.mkdir(match_info_path)
 
     max_cols = 5
-
     counter = 0
 
     for csv in csv_files_info:

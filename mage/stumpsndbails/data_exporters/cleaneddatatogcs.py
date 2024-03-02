@@ -8,9 +8,17 @@ import pandas as pd
 import csv
 from google.cloud import storage
 import os
+import dask
 
 if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
+
+@dask.delayed
+def file_upload_to_gcp(file_path, bucket, object_key_prefix):
+    object_key = f"{object_key_prefix}{file_path.split('/')[-1]}"
+    blob = bucket.blob(object_key)
+    blob.upload_from_filename(file_path)
+    return "success"
 
 
 @data_exporter
@@ -34,34 +42,18 @@ def export_data(data, *args, **kwargs):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
 
-    for csv_file in csv_files:
-        counter += 1
-        if (counter % 1000 == 0):
-            print(counter, "files uploaded") 
-        object_key = f"{csv_object_key_prefix}{csv_file.split('/')[-1]}"
-        blob = bucket.blob(object_key)
-        blob.upload_from_filename(csv_file)
+    delayed_results = []
 
-    print("Finished Ball by Ball")
+    for csv_file in csv_files:
+        delayed_results.append(file_upload_to_gcp(csv_file, bucket, csv_object_key_prefix))
     
     for csv_file in player_info_csv_files:
-        counter += 1
-        if (counter % 1000 == 0):
-            print(counter, "files uploaded") 
-        object_key = f"{player_info_prefix}{csv_file.split('/')[-1]}"
-        blob = bucket.blob(object_key)
-        blob.upload_from_filename(csv_file)
-
-    print("Finished Player Infos by match")
+        delayed_results.append(file_upload_to_gcp(csv_file, bucket, player_info_prefix))
     
     for csv_file in match_info_csv_files:
-        counter += 1
-        if (counter % 1000 == 0):
-            print(counter, "files uploaded") 
-        object_key = f"{match_info_prefix}{csv_file.split('/')[-1]}"
-        blob = bucket.blob(object_key)
-        blob.upload_from_filename(csv_file)
+        delayed_results.append(file_upload_to_gcp(csv_file, bucket, match_info_prefix))
+
     
-    print("Finished Match Infos by match")
+    dask.compute(*delayed_results)
 
     print("Staging Data Ingested successfully")

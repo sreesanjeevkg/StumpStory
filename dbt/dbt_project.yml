@@ -37,4 +37,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   stumpsndbails:
+  
+vars:
+  extras_type: ['WIDE', 'NOBALL', 'LEGBYES', 'BYE', 'PENALTY']
     

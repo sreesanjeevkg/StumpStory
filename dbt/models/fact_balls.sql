@@ -1,75 +1,50 @@
-{{
-    config(
-        materialized='table'
-    )
-}}
+{{ config(materialized="table") }}
 
-WITH deliveries AS (
-    SELECT 
-        match_id,
-        innings,
-        SPLIT(CAST(ball AS string), '.')[OFFSET(0)] AS overs,
-        SPLIT(CAST(ball AS string), '.')[OFFSET(1)] AS ball,
-        striker,
-        non_striker,
-        bowler,
-        runs_off_bat,
-        extras,
-        wides,
-        noballs,
-        byes,
-        legbyes,
-        penalty,
-        wicket_type,
-        player_dismissed,
-        other_wicket_type,
-        other_player_dismissed
-    FROM 
-        {{ source('core', 'ball_by_ball') }}
-),
-players AS (
-    SELECT 
-        player_id,
-        player_name
-    FROM 
-        {{ ref("dim_players") }}
-    group by 1, 2
-),
-matches AS (
-    SELECT 
-        distinct match_id 
-    FROM 
-        {{ ref("dim_matches") }}
-) 
-SELECT 
-    matches.match_id,
+with
+    deliveries as (
+        select
+            match_id,
+            innings,
+            split(cast(ball as string), '.')[offset(0)] as overs,
+            split(cast(ball as string), '.')[offset(1)] as ball,
+            striker,
+            non_striker,
+            bowler,
+            runs_off_bat,
+            extras,
+            wides,
+            noballs,
+            byes,
+            legbyes,
+            penalty,
+            wicket_type,
+            player_dismissed,
+            other_wicket_type,
+            other_player_dismissed
+        from {{ source("core", "ball_by_ball") }}
+    )
+select
+    match_id,
+    striker,
+    non_striker,
+    bowler,
     innings,
-    CAST (overs as integer) as overs,
-    CAST (ball as integer) as ball ,
-    b1.player_id AS striker,
-    b2.player_id AS non_striker,
-    b3.player_id AS bowler,
+    cast(overs as integer) + 1 as overs,
+    cast(ball as integer) as ball,
     runs_off_bat,
     extras,
-    CASE 
-        WHEN wides IS NOT NULL THEN 'WIDE' 
-        WHEN noballs IS NOT NULL THEN 'NOBALL' 
-        WHEN byes IS NOT NULL THEN 'BYE' 
-        WHEN legbyes IS NOT NULL THEN 'LEGBYES' 
-        WHEN penalty IS NOT NULL THEN 'PENALTY' 
-    END AS extras_type,
-    CASE 
-        WHEN wicket_type is null THEN 'N' 
-        ELSE 'Y' 
-    END AS wicket_flg,
+    case
+        when wides is not null
+        then 'WIDE'
+        when noballs is not null
+        then 'NOBALL'
+        when byes is not null
+        then 'BYE'
+        when legbyes is not null
+        then 'LEGBYES'
+        when penalty is not null
+        then 'PENALTY'
+    end as extras_type,
+    case when wicket_type is null then 'N' else 'Y' end as wicket_flg,
     wicket_type
-FROM 
-    deliveries
-INNER JOIN 
-    matches ON CAST(deliveries.match_id AS string) = CAST(matches.match_id AS string)
-INNER JOIN 
-    players b1 ON deliveries.striker = b1.player_name
-INNER JOIN 
-    players b2 ON deliveries.non_striker = b2.player_name
-INNER JOIN 
-    players b3 ON deliveries.bowler = b3.player_name
+from deliveries

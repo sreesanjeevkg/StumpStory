@@ -10,4 +10,224 @@ sources:
       - name: player_info
 models:
   - name: fact_balls
-    description: "Table for fact ball by ball data"
+    description: ""
+    columns:
+      - name: match_id
+        data_type: string
+        description: ""
+
+      - name: striker
+        data_type: string
+        description: ""
+
+      - name: non_striker
+        data_type: string
+        description: ""
+
+      - name: bowler
+        data_type: string
+        description: ""
+
+      - name: innings
+        data_type: int64
+        description: ""
+
+      - name: overs
+        data_type: int64
+        description: ""
+
+      - name: ball
+        data_type: int64
+        description: ""
+
+      - name: runs_off_bat
+        data_type: int64
+        description: ""
+
+      - name: extras
+        data_type: int64
+        description: ""
+
+      - name: extras_type
+        data_type: string
+        description: ""
+
+      - name: wicket_flg
+        data_type: string
+        description: ""
+
+      - name: wicket_type
+        data_type: string
+        description: ""
+
+  - name: dim_players
+    description: ""
+    columns:
+      - name: player_id
+        data_type: string
+        description: ""
+
+      - name: player_name
+        data_type: string
+        description: ""
+
+      - name: team
+        data_type: string
+        description: ""
+
+      - name: match_id
+        data_type: int64
+        description: ""
+
+  - name: dim_matches
+    description: ""
+    columns:
+      - name: match_id
+        data_type: int64
+        description: ""
+
+      - name: team
+        data_type: string
+        description: ""
+
+      - name: dates_played
+        data_type: date
+        description: ""
+
+      - name: event
+        data_type: string
+        description: ""
+
+      - name: venue
+        data_type: string
+        description: ""
+
+      - name: city
+        data_type: string
+        description: ""
+
+      - name: gender
+        data_type: string
+        description: ""
+
+      - name: winner
+        data_type: string
+        description: ""
+
+      - name: method
+        data_type: string
+        description: ""
+
+      - name: player_of_match
+        data_type: string
+        description: ""
+
+      - name: other_result
+        data_type: string
+        description: ""
+
+      - name: umpire
+        data_type: string
+        description: ""
+
+  - name: dim_date
+    description: ""
+    columns:
+      - name: cal_date
+        data_type: date
+        description: ""
+
+      - name: cal_year
+        data_type: int64
+        description: ""
+
+      - name: cal_year_day
+        data_type: int64
+        description: ""
+
+      - name: cal_quarter
+        data_type: int64
+        description: ""
+
+      - name: cal_month
+        data_type: int64
+        description: ""
+
+      - name: cal_month_name
+        data_type: string
+        description: ""
+
+      - name: cal_month_day
+        data_type: int64
+        description: ""
+
+      - name: cal_week
+        data_type: int64
+        description: ""
+
+      - name: cal_week_day
+        data_type: int64
+        description: ""
+
+      - name: cal_day_name
+        data_type: string
+        description: ""
+
+      - name: id
+        data_type: int64
+        description: ""
+
+  - name: fact_batsman_info
+    description: ""
+    columns:
+      - name: match_id
+        data_type: int64
+        description: ""
+
+      - name: match_year
+        data_type: int64
+        description: ""
+
+      - name: event
+        data_type: string
+        description: ""
+
+      - name: team_for
+        data_type: string
+        description: ""
+
+      - name: team_against
+        data_type: string
+        description: ""
+
+      - name: batsman
+        data_type: string
+        description: ""
+
+      - name: innings
+        data_type: int64
+        description: ""
+
+      - name: runs
+        data_type: int64
+        description: ""
+
+      - name: balls_faced
+        data_type: int64
+        description: ""
+
+      - name: 0s
+        data_type: int64
+        description: ""
+
+      - name: 4s
+        data_type: int64
+        description: ""
+
+      - name: 6s
+        data_type: int64
+        description: ""
+
+      - name: strikerate
+        data_type: float64
+        description: ""

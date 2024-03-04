@@ -1,4 +1,4 @@
-# stumpsNDbails 
+# StumpStory 
 
 ![image](https://github.com/sreesanjeevkg/stumpsNDbails/assets/32449066/c7df0feb-1f9c-43b7-9e37-591c84a3e321)
 
@@ -32,6 +32,7 @@ The Docker image of MageAI is running on the GCP VM with a cron job scheduled to
     
     DESIGN CHOICES: 
         - Doing a full historical load every day since the data is small as of now. Doing a full historical load also frees me from doing backfills in case there are any errors in the data.
+        - Made use of Dask for parallel uploading files to GCP which drastically reduced the pipeline runtime from 2.5 hours to 30 minutes
 
 ![image](images/MageAIpipeline.png)
 

@@ -81,7 +81,7 @@ blocks:
   language: python
   name: localcleaner
   retry_config: null
-  status: updated
+  status: executed
   timeout: null
   type: custom
   upstream_blocks:

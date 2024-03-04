@@ -22,7 +22,7 @@ resource "google_compute_address" "staticIPAddress" {
 resource "google_compute_instance" "orchestratorVM" {
   name                      = "orchestrator"
   zone                      = "us-central1-a"
-  machine_type              = "e2-standard-2"
+  machine_type              = "e2-highcpu-8"
   allow_stopping_for_update = true
 
   boot_disk {

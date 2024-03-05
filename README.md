@@ -23,6 +23,7 @@ The project follows the medallion architecture style of bronze, silver, and gold
 The following are the terraform resources needed for the project [As of now]
 
 1. GCP Bucket - To store the raw and staging data extracted from cricsheet.org before loading them to the data warehouse.
+    UPDATE: Removed version since it lead to multiple unneccssary, duplicate files.
 2. GCP Compute Engine - To have the Docker image of MageAI running for loading data from cricsheet.org.
 3. GCP Static Address - A static public IP address connected to the VM to enable remote connection from the host.
 
@@ -41,3 +42,7 @@ The Docker image of MageAI is running on the GCP VM with a cron job scheduled to
 Constructed a basic dimensional modelling structure from the available data, has dimension tables for players and match info. and the grain will be each ball bowled in a cricket match
 
 ![image](images/dbtLineage.png)
+
+## Looker Studio
+
+https://lookerstudio.google.com/s/h4uKBKk1PXY

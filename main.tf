@@ -8,15 +8,14 @@ terraform {
 }
 
 provider "google" {
-  project     = "stumpsndbails"
-  region      = "us-central1"
-  zone        = "us-central1-a"
-  credentials = "/Users/sreesanjeev/Desktop/stumpsNDbails/secrets/stumpsndbails-b4fe9300c0a1.json"
+  project     = var.project
+  region      = var.region
+  credentials =  file(var.credentials)
 }
 
 resource "google_compute_address" "staticIPAddress" {
   name   = "static-ip-address"
-  region = "us-central1"
+  region = var.region
 }
 
 resource "google_compute_instance" "orchestratorVM" {

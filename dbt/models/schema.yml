@@ -10,39 +10,49 @@ sources:
       - name: player_info
 models:
   - name: fact_balls
-    description: ""
+    description: "Fact table for ball by ball information of all cricket matches from the year 2002"
     columns:
       - name: match_id
         data_type: string
-        description: ""
+        description: "The id for the match. Currently this is the ID as used by ESPNCricinfo."
 
       - name: striker
         data_type: string
-        description: ""
+        description: "The name of the batter who faced the delivery"
+        tests:
+          - not_null
+              
 
       - name: non_striker
         data_type: string
-        description: ""
+        description: "The name of the non-striker during the delivery."
+        tests:
+          - not_null
 
       - name: bowler
         data_type: string
-        description: ""
+        description: "The name of the bowler during the delivery."
+        tests:
+          - not_null
 
       - name: innings
         data_type: int64
-        description: ""
+        description: "The number of the innings in which the delivery took place."
+        tests:
+          - not_null
 
       - name: overs
         data_type: int64
-        description: ""
+        description: "An identifier for the delivery (such as 23.5) specifies the particular ball (in that case 24th over)"
+        
 
       - name: ball
         data_type: int64
-        description: ""
+        description: "An identifier for the delivery (such as 23.5) specifies the particular ball (in that case the 5th ball)"
 
       - name: runs_off_bat
         data_type: int64
-        description: ""
+        description: "The total number of runs scored by the batter off the ball. If the batter failed to score this will show 0"
 
       - name: extras
         data_type: int64
@@ -50,7 +60,7 @@ models:
 
       - name: extras_type
         data_type: string
-        description: ""
+        description: "The total number of runs conceded via extras off the ball. If no extras were conceded this will show 0."
 
       - name: wicket_flg
         data_type: string
@@ -58,7 +68,7 @@ models:
 
       - name: wicket_type
         data_type: string
-        description: ""
+        description: "If a wicket fell on this delivery then this will be the kind of dismissal that took place. This will be one of bowled, caught, caught and bowled, lbw, stumped, run out, retired hurt, hit wicket, obstructing the field, hit the ball twice, handled the ball, or timed out. If no dismissals took place this will be an empty string."
 
   - name: dim_players
     description: ""

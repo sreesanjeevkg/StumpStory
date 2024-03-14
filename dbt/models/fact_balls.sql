@@ -46,5 +46,7 @@ select
         then 'PENALTY'
     end as extras_type,
     case when wicket_type is null then 'N' else 'Y' end as wicket_flg,
-    wicket_type
+    wicket_type,
+    player_dismissed,
+    other_player_dismissed
 from deliveries

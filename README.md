@@ -41,7 +41,7 @@ The Docker image of MageAI is running on the GCP VM with a cron job scheduled to
 
 Constructed a basic dimensional modelling structure from the available data, has dimension tables for players and match info. and the grain will be each ball bowled in a cricket match
 
-![image](images/dbtLineage.png)
+![image](images/dbtLineage1.1.png)
 
 ## Looker Studio
 

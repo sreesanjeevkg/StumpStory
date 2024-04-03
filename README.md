@@ -46,3 +46,55 @@ Constructed a basic dimensional modelling structure from the available data, has
 ## Looker Studio
 
 https://lookerstudio.google.com/s/h4uKBKk1PXY
+
+
+### Steps to Run
+
+1.  Set up Google Cloud Platform (GCP) Account:
+
+    -   Create a GCP account if you haven't already.
+    -   Generate a service account key with admin privileges and save the JSON file.
+
+2.  Clone the Repository
+
+3.  Modify Terraform Configuration:
+
+    -   Navigate to the project directory.
+    -   Open `main.tf` and update the `credentials` field with the path to your service account JSON file.
+4.  Apply Terraform Configuration:
+
+    -   Run Terraform to create necessary resources in GCP.
+
+    `terraform init
+    terraform apply`
+
+5.  Set up MageAI Docker Container:
+
+    -   SSH into the GCP VM created by Terraform.
+    
+    `ssh username@vm_ip_address`
+
+    -   Clone the repository again within the VM.
+    -   Navigate to the repository directory.
+    -   Start the Docker containers using Docker Compose.
+
+    `docker-compose up -d`
+
+6.  Run Raw Data Ingester and Cleaner:
+
+    -   Manually run the `rawdataingesterandcleaner` script or set it up as a scheduled job.
+    -   This script cleans and uploads raw data files to the GCP bucket. It's scheduled to run daily at 00:00 CST.
+
+7.  Copy Files to BigQuery:
+
+    -   Run the `nightlybigqueryingester` script or schedule it for regular execution.
+    -   This script copies files from the GCP bucket to BigQuery. It's recommended to run this after raw data ingestion.
+
+8.  Set up dbt Cloud Account:
+
+    -   Create a dbt Cloud account if you don't have one.
+    -   Copy all files from the `dbt` module to your dbt Cloud account to create required fact and dimension tables.
+
+9.  Explore Data with Looker Studio:
+
+    -   Visit the provided Looker Studio link to explore analytical charts and insights generated from the data.

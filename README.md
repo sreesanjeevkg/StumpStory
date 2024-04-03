@@ -41,14 +41,18 @@ The Docker image of MageAI is running on the GCP VM with a cron job scheduled to
 
 Constructed a basic dimensional modelling structure from the available data, has dimension tables for players and match info. and the grain will be each ball bowled in a cricket match
 
-![image](images/dbtLineage1.1.png)
+<img src = "images/dbtLineage1.1.png" width = "600" height = "600">
 
 ## Looker Studio
 
 https://lookerstudio.google.com/s/h4uKBKk1PXY
 
+<img src = "images/page1.png" width = "300" height = "300"> <img src = "images/page2.png" width = "300" height = "300">
 
-### Steps to Run
+<img src = "images/page3.png" width = "300" height = "300"> <img src = "images/page4.png" width = "300" height = "300">
+
+
+## Steps to Run
 
 1.  Set up Google Cloud Platform (GCP) Account:
 

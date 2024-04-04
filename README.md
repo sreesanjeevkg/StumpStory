@@ -2,7 +2,7 @@
 
 ![image](https://github.com/sreesanjeevkg/stumpsNDbails/assets/32449066/c7df0feb-1f9c-43b7-9e37-591c84a3e321)
 
-The Cricket Data Analytics Dashboard is a web-based application designed to provide cricket enthusiasts with powerful tools to explore, analyze, and visualize cricket data. The dashboard aims to assist users in understanding cricket matches, players, teams, and various statistical metrics, ultimately helping them make informed decisions, such as creating fantasy cricket teams for platforms like Dream11.
+The Cricket Data Analytics Dashboard addresses the need for cricket enthusiasts to gain deeper insights into the game's dynamics. By providing a comprehensive web-based platform, users can explore, analyze, and visualize cricket data effortlessly. From match statistics to player performances and team dynamics, the dashboard offers valuable insights, empowering users to make informed decisions. Whether it's understanding match strategies, player strengths, or identifying trends for fantasy cricket team creation on platforms like Dream11, the dashboard serves as a vital tool for cricket enthusiasts to enhance their understanding and engagement with the sport.
 
 ## Architecture V0.1 
 
@@ -35,7 +35,7 @@ The Docker image of MageAI is running on the GCP VM with a cron job scheduled to
         - Doing a full historical load every day since the data is small as of now. Doing a full historical load also frees me from doing backfills in case there are any errors in the data.
         - Made use of Dask for parallel uploading files to GCP which drastically reduced the pipeline runtime from 2.5 hours to 30 minutes
 
-![image](images/MageAIpipeline.png)
+![image](images/Mage2.0.png)
 
 ## dbt
 

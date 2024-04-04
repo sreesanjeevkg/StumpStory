@@ -35,13 +35,16 @@ The Docker image of MageAI is running on the GCP VM with a cron job scheduled to
         - Doing a full historical load every day since the data is small as of now. Doing a full historical load also frees me from doing backfills in case there are any errors in the data.
         - Made use of Dask for parallel uploading files to GCP which drastically reduced the pipeline runtime from 2.5 hours to 30 minutes
 
-![image](images/Mage2.0.png)
+<div style="text-align:center;">
+<img src = "images/Mage2.0.png" width = "300" height = "600">
+</div>
 
 ## dbt
 
 Constructed a basic dimensional modelling structure from the available data, has dimension tables for players and match info. and the grain will be each ball bowled in a cricket match
 
-<img src = "images/dbtLineage1.1.png" width = "600" height = "600">
+<div style="text-align:center;">
+<img src = "images/dbtLineage1.1.png" width = "600" height = "600"></div>
 
 ## Looker Studio
 

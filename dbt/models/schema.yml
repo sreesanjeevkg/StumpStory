@@ -3,11 +3,11 @@ version: 2
 sources:
   - name: core
     database: stumpsndbails
-    schema: Crictest
+    schema: dbtInput
     tables:
       - name: ball_by_ball
-      - name: match_info
-      - name: player_info
+      - name: match
+      - name: player
 models:
   - name: fact_balls
     description: "Fact table for ball by ball information of all cricket matches from the year 2002"

@@ -11,6 +11,6 @@ select
     sum(`4s`) as `4s`,
     sum(`6s`) as `6s`,
     sum(case when out = 'Y' then 1 else 0 end) as outs,
-    max(runs) as HS
+    max(runs) as hs
 from {{ ref("fact_batsman_info_by_innings") }}
 group by batsman, event

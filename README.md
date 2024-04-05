@@ -4,9 +4,9 @@
 
 The Cricket Data Analytics Dashboard addresses the need for cricket enthusiasts to gain deeper insights into the game's dynamics. By providing a comprehensive web-based platform, users can explore, analyze, and visualize cricket data effortlessly. From match statistics to player performances and team dynamics, the dashboard offers valuable insights, empowering users to make informed decisions. Whether it's understanding match strategies, player strengths, or identifying trends for fantasy cricket team creation on platforms like Dream11, the dashboard serves as a vital tool for cricket enthusiasts to enhance their understanding and engagement with the sport.
 
-## Architecture V0.1 
+## Architecture 0.2 
 
-![image](images/architecture0.1.png)
+![image](images/StumpsndBails.drawio.png)
 
 The project follows the medallion architecture style of bronze, silver, and gold for raw, staging, and transformed data.
 
@@ -30,10 +30,6 @@ The following are the terraform resources needed for the project [As of now]
 ## MageAI 
 
 The Docker image of MageAI is running on the GCP VM with a cron job scheduled to perform a daily full data load from cricsheet.org at 00:00. It loads the raw data under a folder called "raw/" and performs some initial cleaning of the CSVs before loading them by match_info, player_info, and ball_by_ball information to staging/
-    
-    DESIGN CHOICES: 
-        - Doing a full historical load every day since the data is small as of now. Doing a full historical load also frees me from doing backfills in case there are any errors in the data.
-        - Made use of Dask for parallel uploading files to GCP which drastically reduced the pipeline runtime from 2.5 hours to 30 minutes
 
 <div style="text-align:center;">
 <img src = "images/Mage2.0.png" width = "300" height = "600">
@@ -53,6 +49,12 @@ https://lookerstudio.google.com/s/h4uKBKk1PXY
 <img src = "images/page1.png" width = "300" height = "300"> <img src = "images/page2.png" width = "300" height = "300">
 
 <img src = "images/page3.png" width = "300" height = "300"> <img src = "images/page4.png" width = "300" height = "300">
+
+## DESIGN CHOICES: 
+     - Doing a full historical load every day since the data is small as of now. Doing a full historical load also frees me from doing backfills in case there are any errors in the data.
+     - Made use of Dask for parallel uploading files to GCP which drastically reduced the pipeline runtime from 2.5 hours to 30 minutes.
+     - The data in BigQuery tables has not been partitioned becasue there are not relevant columns to partition the data on.
+     - Added a google cloud function to send the data from GCP cloud storage to BigQuery.
 
 
 ## Steps to Run
@@ -91,17 +93,13 @@ https://lookerstudio.google.com/s/h4uKBKk1PXY
 
     -   Manually run the `rawdataingesterandcleaner` script or set it up as a scheduled job.
     -   This script cleans and uploads raw data files to the GCP bucket. It's scheduled to run daily at 00:00 CST.
+    -   This script also invokes the trigger for running the function which ingests data from GCP bucket to BigQuery.
 
-7.  Copy Files to BigQuery:
-
-    -   Run the `nightlybigqueryingester` script or schedule it for regular execution.
-    -   This script copies files from the GCP bucket to BigQuery. It's recommended to run this after raw data ingestion.
-
-8.  Set up dbt Cloud Account:
+7.  Set up dbt Cloud Account:
 
     -   Create a dbt Cloud account if you don't have one.
     -   Copy all files from the `dbt` module to your dbt Cloud account to create required fact and dimension tables.
 
-9.  Explore Data with Looker Studio:
+8.  Explore Data with Looker Studio:
 
     -   Visit the provided Looker Studio link to explore analytical charts and insights generated from the data.

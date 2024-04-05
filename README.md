@@ -6,17 +6,15 @@ The Cricket Data Analytics Dashboard addresses the need for cricket enthusiasts 
 
 ## Architecture 0.2 
 
-![image](images/StumpsndBails.drawio.png)
-
-The project follows the medallion architecture style of bronze, silver, and gold for raw, staging, and transformed data.
+![image](images/modernarchitexture.drawio.svg)
 
 
 ## Technology stacks used 
 
 - Terraform - Infrastructure as Code (IaC)
 - MageAI - Orchestration Tool
-- dbt - Transformations
-- Looker Studio - Analytical Charts
+- dbt Cloud - Transformations
+- GCP - Google cloud storage, Google cloud functions, BigQuery, Looker Studio
 
 ## Terraform 
 
@@ -35,7 +33,7 @@ The Docker image of MageAI is running on the GCP VM with a cron job scheduled to
 <img src = "images/Mage2.0.png" width = "300" height = "600">
 </div>
 
-## dbt
+## dbt Cloud
 
 Constructed a basic dimensional modelling structure from the available data, has dimension tables for players and match info. and the grain will be each ball bowled in a cricket match
 
@@ -80,9 +78,6 @@ https://lookerstudio.google.com/s/h4uKBKk1PXY
 5.  Set up MageAI Docker Container:
 
     -   SSH into the GCP VM created by Terraform.
-    
-    `ssh username@vm_ip_address`
-
     -   Clone the repository again within the VM.
     -   Navigate to the repository directory.
     -   Start the Docker containers using Docker Compose.
@@ -98,7 +93,7 @@ https://lookerstudio.google.com/s/h4uKBKk1PXY
 7.  Set up dbt Cloud Account:
 
     -   Create a dbt Cloud account if you don't have one.
-    -   Copy all files from the `dbt` module to your dbt Cloud account to create required fact and dimension tables.
+    -   Copy all files from the dbt module to your dbt Cloud account to create required fact and dimension tables.
 
 8.  Explore Data with Looker Studio:
 
